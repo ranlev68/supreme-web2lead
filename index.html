@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Supreme IT - Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f4f8;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      background: white;
+      margin: 50px auto;
+      padding: 30px 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .logo img {
+      max-width: 200px;
+    }
+    h2 {
+      text-align: center;
+      color: #1a73e8;
+      margin-bottom: 30px;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 25px;
+      width: 100%;
+      padding: 12px;
+      background-color: #1a73e8;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #155ab6;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="logo-placeholder.png" alt="Supreme IT Logo">
+    </div>
+    <h2>Contact Us</h2>
+    <form action="https://webto.salesforce.com/servlet/servlet.WebToLead?encoding=UTF-8" method="POST">
+      <input type="hidden" name="oid" value="00DgL000001CBZX">
+      <input type="hidden" name="retURL" value="http://">
+
+      <label for="first_name">First Name</label>
+      <input id="first_name" name="first_name" maxlength="40" type="text" required>
+
+      <label for="last_name">Last Name</label>
+      <input id="last_name" name="last_name" maxlength="80" type="text" required>
+
+      <label for="company">Company</label>
+      <input id="company" name="company" maxlength="40" type="text" required>
+
+      <label for="country_code">Country</label>
+      <select id="country_code" name="country_code" required>
+        <option value="">--Select Country--</option>
+        <option value="US">United States</option>
+        <option value="IL">Israel</option>
+        <option value="GB">United Kingdom</option>
+        <option value="JP">Japan</option>
+      </select>
+
+      <label for="email">Email</label>
+      <input id="email" name="email" maxlength="80" type="email" required>
+
+      <label for="mobile">Mobile</label>
+      <input id="mobile" name="mobile" maxlength="40" type="tel" required>
+
+      <label for="title">Title</label>
+      <input id="title" name="title" maxlength="40" type="text">
+
+      <label for="industry">Industry</label>
+      <select id="industry" name="industry">
+        <option value="">--Select Industry--</option>
+        <option value="Technology">Technology</option>
+        <option value="Finance">Finance</option>
+        <option value="Education">Education</option>
+        <option value="Healthcare">Healthcare</option>
+      </select>
+
+      <label for="00NgL00000aWusD">Number of Employees</label>
+      <input id="00NgL00000aWusD" name="00NgL00000aWusD" type="number" min="1">
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+</html>
