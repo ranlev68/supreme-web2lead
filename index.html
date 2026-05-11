@@ -1,326 +1,87 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Veltrix | Request Threat Readiness Assessment</title>
+<form action="https://webto.salesforce.com/servlet/servlet.WebToLead" method="POST">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Inter, Arial, sans-serif;
-      background: radial-gradient(circle at 20% 20%, rgba(34,211,238,.13), transparent 34%),
-                  linear-gradient(145deg, #020617, #030712 55%, #020617);
-      color: #f8fafc;
-    }
+  <input type="hidden" name="oid" value="00DgL00000RSNrl">
+  <input type="hidden" name="encoding" value="UTF-8">
+  <input type="hidden" name="retURL" value="https://veltrixfake.lovable.app/assessment-processing">
+  <input type="hidden" name="lead_source" value="Veltrix Website">
 
-    .page {
-      min-height: 100vh;
-      padding: 48px 6vw;
-    }
+  <label for="first_name">First Name</label>
+  <input id="first_name" maxlength="40" name="first_name" type="text" required><br>
 
-    .hero {
-      max-width: 960px;
-      margin: 0 auto 48px;
-      text-align: center;
-    }
+  <label for="last_name">Last Name</label>
+  <input id="last_name" maxlength="80" name="last_name" type="text" required><br>
 
-    .eyebrow {
-      color: #22d3ee;
-      font-size: 13px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-      font-weight: 700;
-    }
+  <label for="email">Work Email</label>
+  <input id="email" maxlength="80" name="email" type="email" required><br>
 
-    h1 {
-      font-size: clamp(42px, 7vw, 82px);
-      margin: 18px 0;
-      line-height: .95;
-      letter-spacing: -.05em;
-    }
+  <label for="company">Company</label>
+  <input id="company" maxlength="40" name="company" type="text" required><br>
 
-    .gradient-text {
-      background: linear-gradient(135deg, #fff, #a5f3fc 45%, #38bdf8);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
+  <label for="title">Title</label>
+  <input id="title" maxlength="40" name="title" type="text"><br>
 
-    .hero p {
-      color: #8fb8c8;
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 720px;
-      margin: 0 auto;
-    }
+  <label for="00NgL00003sWlft">Fleet Size</label>
+  <select id="00NgL00003sWlft" name="00NgL00003sWlft" required>
+    <option value="">Select fleet size</option>
+    <option value="Under 100">Under 100</option>
+    <option value="100–1,000">100–1,000</option>
+    <option value="1,000–10,000">1,000–10,000</option>
+    <option value="10,000–100,000">10,000–100,000</option>
+    <option value="100,000+">100,000+</option>
+  </select><br>
 
-    .veltrix-form-wrapper {
-      max-width: 840px;
-      margin: 0 auto;
-      padding: 34px;
-      background: linear-gradient(145deg, rgba(8,15,28,.96), rgba(3,7,18,.98));
-      border: 1px solid rgba(34,211,238,.22);
-      border-radius: 28px;
-      box-shadow: 0 0 44px rgba(34,211,238,.12);
-    }
+  <label for="00NgL00003s084K">Region</label>
+  <select id="00NgL00003s084K" name="00NgL00003s084K" required>
+    <option value="">Select region</option>
+    <option value="West">West</option>
+    <option value="Central">Central</option>
+    <option value="East">East</option>
+  </select><br>
 
-    .veltrix-form-title {
-      font-size: 30px;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
+  <label for="00NgL00003sWsvt">Infrastructure Type</label>
+  <select id="00NgL00003sWsvt" name="00NgL00003sWsvt" required>
+    <option value="">Select infrastructure type</option>
+    <option value="Connected Vehicles">Connected Vehicles</option>
+    <option value="EV Charging Infrastructure">EV Charging Infrastructure</option>
+    <option value="OTA Firmware Systems">OTA Firmware Systems</option>
+    <option value="Autonomous Fleet Operations">Autonomous Fleet Operations</option>
+    <option value="Smart City Mobility">Smart City Mobility</option>
+    <option value="Mobility APIs">Mobility APIs</option>
+    <option value="Vehicle Edge Devices">Vehicle Edge Devices</option>
+    <option value="Logistics Networks">Logistics Networks</option>
+  </select><br>
 
-    .veltrix-form-subtitle {
-      color: #8fb8c8;
-      margin-bottom: 28px;
-      line-height: 1.5;
-    }
+  <label for="00NgL00003sWtTl">Security Maturity</label>
+  <select id="00NgL00003sWtTl" name="00NgL00003sWtTl" required>
+    <option value="">Select maturity</option>
+    <option value="Foundational">Foundational</option>
+    <option value="Developing">Developing</option>
+    <option value="Advanced">Advanced</option>
+    <option value="Enterprise Optimized">Enterprise Optimized</option>
+  </select><br>
 
-    .veltrix-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-    }
+  <label for="00NgL00003sWuPp">Assessment Type</label>
+  <select id="00NgL00003sWuPp" name="00NgL00003sWuPp" required>
+    <option value="">Select assessment</option>
+    <option value="Threat Readiness Assessment">Threat Readiness Assessment</option>
+    <option value="OTA Security Review">OTA Security Review</option>
+    <option value="Infrastructure Exposure Analysis">Infrastructure Exposure Analysis</option>
+    <option value="Executive Cyber Briefing">Executive Cyber Briefing</option>
+    <option value="Compliance Assessment">Compliance Assessment</option>
+  </select><br>
 
-    .veltrix-field {
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-    }
+  <label for="00NgL00003sWxAn">Estimated Vehicle Count</label>
+  <input id="00NgL00003sWxAn" name="00NgL00003sWxAn" type="text"><br>
 
-    .veltrix-field.full {
-      grid-column: 1 / -1;
-    }
+  <label for="00NgL00003sX1pV">OTA Enabled</label>
+  <input id="00NgL00003sX1pV" name="00NgL00003sX1pV" type="checkbox" value="1"><br>
 
-    label {
-      font-size: 13px;
-      font-weight: 700;
-      color: #b8e9f5;
-    }
+  <label for="00NgL00003sX2SD">Multi-Region Operations</label>
+  <input id="00NgL00003sX2SD" name="00NgL00003sX2SD" type="checkbox" value="1"><br>
 
-    input[type="text"],
-    input[type="email"],
-    textarea,
-    select {
-      width: 100%;
-      box-sizing: border-box;
-      background: rgba(15,23,42,.88);
-      border: 1px solid rgba(148,163,184,.22);
-      border-radius: 14px;
-      padding: 13px 14px;
-      color: #fff;
-      font-size: 14px;
-      outline: none;
-    }
+  <label for="00NgL00003s081h">Notes</label>
+  <textarea id="00NgL00003s081h" name="00NgL00003s081h" rows="3" wrap="soft"></textarea><br>
 
-    textarea {
-      min-height: 110px;
-      resize: vertical;
-    }
+  <input type="submit" name="submit" value="Analyze Mobility Exposure">
 
-    select[multiple] {
-      min-height: 145px;
-    }
-
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: #22d3ee;
-      box-shadow: 0 0 0 3px rgba(34,211,238,.14);
-    }
-
-    option {
-      background: #0f172a;
-      color: white;
-    }
-
-    .veltrix-checkbox-row {
-      grid-column: 1 / -1;
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .veltrix-checkbox {
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      padding: 12px 14px;
-      border: 1px solid rgba(34,211,238,.18);
-      border-radius: 14px;
-      background: rgba(15,23,42,.58);
-    }
-
-    .veltrix-checkbox input {
-      accent-color: #22d3ee;
-    }
-
-    .veltrix-submit {
-      margin-top: 26px;
-      width: 100%;
-      padding: 16px 22px;
-      border: none;
-      border-radius: 16px;
-      background: linear-gradient(135deg, #06b6d4, #2563eb);
-      color: white;
-      font-size: 15px;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 0 28px rgba(34,211,238,.28);
-    }
-
-    @media (max-width: 700px) {
-      .veltrix-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .veltrix-form-wrapper {
-        padding: 22px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-  <div class="page">
-
-    <section class="hero">
-      <div class="eyebrow">AI-Native Mobility Cybersecurity</div>
-      <h1>Protecting the<br><span class="gradient-text">Future in Motion</span></h1>
-      <p>
-        Request a Veltrix threat readiness assessment for connected vehicles,
-        autonomous fleets, EV infrastructure, OTA firmware systems, and mobility APIs.
-      </p>
-    </section>
-
-    <form class="veltrix-form-wrapper"
-          action="https://webto.salesforce.com/servlet/servlet.WebToLead"
-          method="POST">
-
-      <input type="hidden" name="oid" value="00DgL00000RSNrl">
-      <input type="hidden" name="encoding" value="UTF-8">
-      <input type="hidden" name="retURL" value="https://veltrixfake.lovable.app/thank-you">
-      <input type="hidden" name="lead_source" value="Veltrix Website">
-
-      <div class="veltrix-form-title">Request Threat Readiness Assessment</div>
-      <div class="veltrix-form-subtitle">
-        Share your mobility environment details and Veltrix will generate an initial exposure profile.
-      </div>
-
-      <div class="veltrix-grid">
-
-        <div class="veltrix-field">
-          <label for="first_name">First Name</label>
-          <input id="first_name" maxlength="40" name="first_name" type="text" required>
-        </div>
-
-        <div class="veltrix-field">
-          <label for="last_name">Last Name</label>
-          <input id="last_name" maxlength="80" name="last_name" type="text" required>
-        </div>
-
-        <div class="veltrix-field">
-          <label for="email">Work Email</label>
-          <input id="email" maxlength="80" name="email" type="email" required>
-        </div>
-
-        <div class="veltrix-field">
-          <label for="company">Company</label>
-          <input id="company" maxlength="40" name="company" type="text" required>
-        </div>
-
-        <div class="veltrix-field full">
-          <label for="title">Title</label>
-          <input id="title" maxlength="40" name="title" type="text">
-        </div>
-
-        <div class="veltrix-field">
-          <label for="00NgL00003sWlft">Fleet Size</label>
-          <select id="00NgL00003sWlft" name="00NgL00003sWlft" required>
-            <option value="">Select fleet size</option>
-            <option value="Under 100">Under 100</option>
-            <option value="100–1,000">100–1,000</option>
-            <option value="1,000–10,000">1,000–10,000</option>
-            <option value="10,000–100,000">10,000–100,000</option>
-            <option value="100,000+">100,000+</option>
-          </select>
-        </div>
-
-        <div class="veltrix-field">
-          <label for="00NgL00003s084K">Region</label>
-          <select id="00NgL00003s084K" name="00NgL00003s084K" required>
-            <option value="">Select region</option>
-            <option value="West">West</option>
-            <option value="Central">Central</option>
-            <option value="East">East</option>
-          </select>
-        </div>
-
-        <div class="veltrix-field full">
-          <label for="00NgL00003sWsvt">Infrastructure Type</label>
-          <select id="00NgL00003sWsvt" multiple name="00NgL00003sWsvt" required>
-            <option value="Connected Vehicles">Connected Vehicles</option>
-            <option value="EV Charging Infrastructure">EV Charging Infrastructure</option>
-            <option value="OTA Firmware Systems">OTA Firmware Systems</option>
-            <option value="Autonomous Fleet Operations">Autonomous Fleet Operations</option>
-            <option value="Smart City Mobility">Smart City Mobility</option>
-            <option value="Mobility APIs">Mobility APIs</option>
-            <option value="Vehicle Edge Devices">Vehicle Edge Devices</option>
-            <option value="Logistics Networks">Logistics Networks</option>
-          </select>
-        </div>
-
-        <div class="veltrix-field">
-          <label for="00NgL00003sWtTl">Security Maturity</label>
-          <select id="00NgL00003sWtTl" name="00NgL00003sWtTl" required>
-            <option value="">Select maturity</option>
-            <option value="Foundational">Foundational</option>
-            <option value="Developing">Developing</option>
-            <option value="Advanced">Advanced</option>
-            <option value="Enterprise Optimized">Enterprise Optimized</option>
-          </select>
-        </div>
-
-        <div class="veltrix-field">
-          <label for="00NgL00003sWuPp">Assessment Type</label>
-          <select id="00NgL00003sWuPp" name="00NgL00003sWuPp" required>
-            <option value="">Select assessment</option>
-            <option value="Threat Readiness Assessment">Threat Readiness Assessment</option>
-            <option value="OTA Security Review">OTA Security Review</option>
-            <option value="Infrastructure Exposure Analysis">Infrastructure Exposure Analysis</option>
-            <option value="Executive Cyber Briefing">Executive Cyber Briefing</option>
-            <option value="Compliance Assessment">Compliance Assessment</option>
-          </select>
-        </div>
-
-        <div class="veltrix-field full">
-          <label for="00NgL00003sWxAn">Estimated Vehicle Count</label>
-          <input id="00NgL00003sWxAn" name="00NgL00003sWxAn" type="text">
-        </div>
-
-        <div class="veltrix-checkbox-row">
-          <div class="veltrix-checkbox">
-            <input id="00NgL00003sX1pV" name="00NgL00003sX1pV" type="checkbox" value="1">
-            <label for="00NgL00003sX1pV">OTA Enabled</label>
-          </div>
-
-          <div class="veltrix-checkbox">
-            <input id="00NgL00003sX2SD" name="00NgL00003sX2SD" type="checkbox" value="1">
-            <label for="00NgL00003sX2SD">Multi-Region Operations</label>
-          </div>
-        </div>
-
-        <div class="veltrix-field full">
-          <label for="00NgL00003s081h">Notes</label>
-          <textarea id="00NgL00003s081h" name="00NgL00003s081h" wrap="soft"></textarea>
-        </div>
-
-      </div>
-
-      <input class="veltrix-submit" type="submit" name="submit" value="Analyze Mobility Exposure">
-    </form>
-
-  </div>
-</body>
-</html>
+</form>
