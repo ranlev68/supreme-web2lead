@@ -119,10 +119,6 @@
       resize: vertical;
     }
 
-    select[multiple] {
-      min-height: 145px;
-    }
-
     input:focus,
     textarea:focus,
     select:focus {
@@ -200,7 +196,7 @@
 
       <input type="hidden" name="oid" value="00DgL00000RSNrl">
       <input type="hidden" name="encoding" value="UTF-8">
-      <input type="hidden" name="retURL" value="https://veltrixfake.lovable.app/thank-you">
+      <input type="hidden" name="retURL" value="https://veltrixfake.lovable.app/assessment-processing">
       <input type="hidden" name="lead_source" value="Veltrix Website">
 
       <div class="veltrix-form-title">Request Threat Readiness Assessment</div>
@@ -259,7 +255,8 @@
 
         <div class="veltrix-field full">
           <label for="00NgL00003sWsvt">Infrastructure Type</label>
-          <select id="00NgL00003sWsvt" multiple name="00NgL00003sWsvt" required>
+          <select id="00NgL00003sWsvt" name="00NgL00003sWsvt" required>
+            <option value="">Select infrastructure type</option>
             <option value="Connected Vehicles">Connected Vehicles</option>
             <option value="EV Charging Infrastructure">EV Charging Infrastructure</option>
             <option value="OTA Firmware Systems">OTA Firmware Systems</option>
