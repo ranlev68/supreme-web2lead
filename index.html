@@ -16,26 +16,26 @@
 
     .page {
       min-height: 100vh;
-      padding: 48px 6vw;
+      padding: 36px 5vw;
     }
 
     .hero {
-      max-width: 960px;
-      margin: 0 auto 48px;
+      max-width: 860px;
+      margin: 0 auto 32px;
       text-align: center;
     }
 
     .eyebrow {
       color: #22d3ee;
-      font-size: 13px;
+      font-size: 12px;
       letter-spacing: .16em;
       text-transform: uppercase;
       font-weight: 700;
     }
 
     h1 {
-      font-size: clamp(42px, 7vw, 82px);
-      margin: 18px 0;
+      font-size: clamp(36px, 6vw, 68px);
+      margin: 14px 0;
       line-height: .95;
       letter-spacing: -.05em;
     }
@@ -49,44 +49,45 @@
 
     .hero p {
       color: #8fb8c8;
-      font-size: 18px;
-      line-height: 1.7;
-      max-width: 720px;
+      font-size: 16px;
+      line-height: 1.6;
+      max-width: 620px;
       margin: 0 auto;
     }
 
     .veltrix-form-wrapper {
-      max-width: 840px;
+      max-width: 680px;
       margin: 0 auto;
-      padding: 34px;
+      padding: 24px;
       background: linear-gradient(145deg, rgba(8,15,28,.96), rgba(3,7,18,.98));
       border: 1px solid rgba(34,211,238,.22);
-      border-radius: 28px;
-      box-shadow: 0 0 44px rgba(34,211,238,.12);
+      border-radius: 24px;
+      box-shadow: 0 0 34px rgba(34,211,238,.10);
     }
 
     .veltrix-form-title {
-      font-size: 30px;
+      font-size: 24px;
       font-weight: 800;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     .veltrix-form-subtitle {
       color: #8fb8c8;
-      margin-bottom: 28px;
+      margin-bottom: 20px;
       line-height: 1.5;
+      font-size: 14px;
     }
 
     .veltrix-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 18px;
+      gap: 12px;
     }
 
     .veltrix-field {
       display: flex;
       flex-direction: column;
-      gap: 7px;
+      gap: 5px;
     }
 
     .veltrix-field.full {
@@ -94,7 +95,7 @@
     }
 
     label {
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: #b8e9f5;
     }
@@ -107,15 +108,15 @@
       box-sizing: border-box;
       background: rgba(15,23,42,.88);
       border: 1px solid rgba(148,163,184,.22);
-      border-radius: 14px;
-      padding: 13px 14px;
+      border-radius: 11px;
+      padding: 10px 12px;
       color: #fff;
-      font-size: 14px;
+      font-size: 13px;
       outline: none;
     }
 
     textarea {
-      min-height: 110px;
+      min-height: 80px;
       resize: vertical;
     }
 
@@ -134,18 +135,19 @@
     .veltrix-checkbox-row {
       grid-column: 1 / -1;
       display: flex;
-      gap: 18px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .veltrix-checkbox {
       display: flex;
       align-items: center;
-      gap: 9px;
-      padding: 12px 14px;
+      gap: 8px;
+      padding: 9px 11px;
       border: 1px solid rgba(34,211,238,.18);
-      border-radius: 14px;
+      border-radius: 12px;
       background: rgba(15,23,42,.58);
+      font-size: 13px;
     }
 
     .veltrix-checkbox input {
@@ -153,17 +155,17 @@
     }
 
     .veltrix-submit {
-      margin-top: 26px;
+      margin-top: 18px;
       width: 100%;
-      padding: 16px 22px;
+      padding: 13px 18px;
       border: none;
-      border-radius: 16px;
+      border-radius: 14px;
       background: linear-gradient(135deg, #06b6d4, #2563eb);
       color: white;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       cursor: pointer;
-      box-shadow: 0 0 28px rgba(34,211,238,.28);
+      box-shadow: 0 0 24px rgba(34,211,238,.22);
     }
 
     @media (max-width: 700px) {
@@ -172,7 +174,7 @@
       }
 
       .veltrix-form-wrapper {
-        padding: 22px;
+        padding: 18px;
       }
     }
   </style>
@@ -183,7 +185,12 @@
 
     <section class="hero">
       <div class="eyebrow">AI-Native Mobility Cybersecurity</div>
-      <h1>Protecting the<br><span class="gradient-text">Future in Motion</span></h1>
+
+      <h1>
+        Protecting the<br>
+        <span class="gradient-text">Future in Motion</span>
+      </h1>
+
       <p>
         Request a Veltrix threat readiness assessment for connected vehicles,
         autonomous fleets, EV infrastructure, OTA firmware systems, and mobility APIs.
@@ -199,7 +206,10 @@
       <input type="hidden" name="retURL" value="https://veltrixfake.lovable.app/assessment-processing">
       <input type="hidden" name="lead_source" value="Veltrix Website">
 
-      <div class="veltrix-form-title">Request Threat Readiness Assessment</div>
+      <div class="veltrix-form-title">
+        Request Threat Readiness Assessment
+      </div>
+
       <div class="veltrix-form-subtitle">
         Share your mobility environment details and Veltrix will generate an initial exposure profile.
       </div>
@@ -231,7 +241,7 @@
           <input id="company" maxlength="40" name="company" type="text" required>
         </div>
 
-        <div class="veltrix-field full">
+        <div class="veltrix-field">
           <label for="title">Title</label>
           <input id="title" maxlength="40" name="title" type="text">
         </div>
@@ -302,6 +312,7 @@
         </div>
 
         <div class="veltrix-checkbox-row">
+
           <div class="veltrix-checkbox">
             <input id="00NgL00003sX1pV" name="00NgL00003sX1pV" type="checkbox" value="1">
             <label for="00NgL00003sX1pV">OTA Enabled</label>
@@ -311,6 +322,7 @@
             <input id="00NgL00003sX2SD" name="00NgL00003sX2SD" type="checkbox" value="1">
             <label for="00NgL00003sX2SD">Multi-Region Operations</label>
           </div>
+
         </div>
 
         <div class="veltrix-field full">
@@ -320,7 +332,11 @@
 
       </div>
 
-      <input class="veltrix-submit" type="submit" name="submit" value="Analyze Mobility Exposure">
+      <input class="veltrix-submit"
+             type="submit"
+             name="submit"
+             value="Analyze Mobility Exposure">
+
     </form>
 
   </div>
