@@ -86,8 +86,8 @@ export default function Profile() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await base44.auth.updateMe({ job_title: form.job_title, department: form.department, bio: form.bio });
-      setCachedUser({ ...user, job_title: form.job_title, department: form.department, bio: form.bio });
+      await base44.auth.updateMe({ full_name: form.full_name, job_title: form.job_title, department: form.department, bio: form.bio });
+      setCachedUser({ ...user, full_name: form.full_name, job_title: form.job_title, department: form.department, bio: form.bio });
       navigate(-1);
     } catch (err) {
       console.error(err);
@@ -141,8 +141,7 @@ export default function Profile() {
             {/* Full Name */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-900">Full Name</label>
-              <Input value={form.full_name} disabled className="bg-gray-100 text-gray-600 cursor-not-allowed" />
-              <p className="text-xs text-gray-500">This field is managed by your account settings.</p>
+              <Input value={form.full_name} onChange={(e) => setForm((p) => ({ ...p, full_name: e.target.value }))} placeholder="Your name" className="bg-white" />
             </div>
 
             {/* Email */}
