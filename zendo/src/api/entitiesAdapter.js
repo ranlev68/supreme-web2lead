@@ -22,6 +22,11 @@ const TABLES = {
 // so page/component code doesn't need to change.
 const FIELD_ALIASES = { created_date: 'created_at', updated_date: 'updated_at' };
 
+// Base44 auto-stamped created_by (email) / created_by_id on every record.
+// The app reads that back (e.g. to tell if the current user owns a board).
+// Only these tables carry those columns — see the follow-up migration.
+const SUPPORTS_CREATED_BY = new Set(['Board', 'TaskList', 'Card', 'Workspace']);
+
 function toDbSortField(sort) {
   if (!sort) return undefined;
   const desc = sort.startsWith('-');
@@ -89,7 +94,12 @@ function createEntityHandler(entityName) {
       return withDisplayAliases(data);
     },
     async create(data) {
-      const { data: created, error } = await base().insert(data).select().single();
+      let payload = data;
+      if (SUPPORTS_CREATED_BY.has(entityName) && !data.created_by) {
+        const { data: { user } } = await supabase.auth.getUser();
+        if (user) payload = { ...data, created_by: user.email, created_by_id: user.id };
+      }
+      const { data: created, error } = await base().insert(payload).select().single();
       if (error) throw error;
       return withDisplayAliases(created);
     },

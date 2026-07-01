@@ -159,6 +159,46 @@ export default function BoardView() {
     loadData();
   }, [loadData]);
 
+  // Live collaboration: reflect other users' changes to this board instantly,
+  // instead of waiting for the next manual refresh.
+  useEffect(() => {
+    if (!boardId) return;
+
+    const unsubCard = base44.entities.Card.subscribe((event) => {
+      const record = event.data;
+      if (!record || record.board_id !== boardId) return;
+      setCards((prev) => {
+        if (event.type === "delete") return prev.filter((c) => c.id !== event.id);
+        const exists = prev.some((c) => c.id === record.id);
+        return exists ? prev.map((c) => (c.id === record.id ? record : c)) : [...prev, record];
+      });
+    });
+
+    const unsubList = base44.entities.TaskList.subscribe((event) => {
+      const record = event.data;
+      if (!record || record.board_id !== boardId) return;
+      setLists((prev) => {
+        const next = event.type === "delete"
+          ? prev.filter((l) => l.id !== event.id)
+          : prev.some((l) => l.id === record.id)
+            ? prev.map((l) => (l.id === record.id ? record : l))
+            : [...prev, record];
+        return next.sort((a, b) => a.position - b.position);
+      });
+    });
+
+    const unsubBoard = base44.entities.Board.subscribe((event) => {
+      if (event.id !== boardId || event.type === "delete") return;
+      setBoard((prev) => (prev ? { ...prev, ...event.data } : event.data));
+    });
+
+    return () => {
+      unsubCard();
+      unsubList();
+      unsubBoard();
+    };
+  }, [boardId]);
+
   // Redirect to Boards if no board ID — must be AFTER all hooks
   if (!boardId) {
     return <Navigate to={createPageUrl("Boards")} replace />;
