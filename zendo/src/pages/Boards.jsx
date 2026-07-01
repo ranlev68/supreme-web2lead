@@ -134,16 +134,21 @@ export default function Boards() {
   const createBoard = async (workspaceId) => {
     if (!newTitle.trim()) return;
     try { sessionStorage.removeItem(BOARDS_CACHE_KEY); } catch {}
-    await base44.entities.Board.create({
-      title: newTitle.trim(),
-      background_color: selectedColor,
-      is_starred: false,
-      workspace_id: workspaceId,
-    });
-    setNewTitle("");
-    setSelectedColor(BOARD_COLORS[0]);
-    setCreatingIn(null);
-    loadAllBoards();
+    try {
+      await base44.entities.Board.create({
+        title: newTitle.trim(),
+        background_color: selectedColor,
+        is_starred: false,
+        workspace_id: workspaceId,
+      });
+      setNewTitle("");
+      setSelectedColor(BOARD_COLORS[0]);
+      setCreatingIn(null);
+      loadAllBoards();
+    } catch (e) {
+      console.error(e);
+      alert("Couldn't create board: " + e.message);
+    }
   };
 
   const toggleStar = async (e, board) => {

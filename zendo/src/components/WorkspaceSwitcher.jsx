@@ -36,6 +36,7 @@ export default function WorkspaceSwitcher({ workspaceOnly = false }) {
       switchWorkspace(ws.id);
     } catch (e) {
       console.error(e);
+      alert("Couldn't create workspace: " + e.message);
     } finally {
       setLoading(false);
     }
