@@ -67,14 +67,20 @@ export default function Profile() {
   const handleCropConfirm = async (croppedFile) => {
     setCropFile(null);
     setUploading(true);
-    const { file_url } = await base44.integrations.Core.UploadFile({ file: croppedFile });
-    setForm((prev) => ({ ...prev, profile_picture: file_url }));
-    await base44.auth.updateMe({ profile_picture: file_url });
-    const updated = { ...user, profile_picture: file_url };
-    setCachedUser(updated);
-    setUser(updated);
-    window.dispatchEvent(new Event("zendo_user_updated"));
-    setUploading(false);
+    try {
+      const { file_url } = await base44.integrations.Core.UploadFile({ file: croppedFile });
+      setForm((prev) => ({ ...prev, profile_picture: file_url }));
+      await base44.auth.updateMe({ profile_picture: file_url });
+      const updated = { ...user, profile_picture: file_url };
+      setCachedUser(updated);
+      setUser(updated);
+      window.dispatchEvent(new Event("zendo_user_updated"));
+    } catch (e) {
+      console.error(e);
+      alert("Couldn't upload photo: " + e.message);
+    } finally {
+      setUploading(false);
+    }
   };
 
   const handleSave = async () => {

@@ -3,5 +3,8 @@
 // so pages/components didn't need to change — only what's behind them did.
 import { entities } from '@/api/entitiesAdapter';
 import { auth } from '@/api/authAdapter';
+import { UploadFile } from '@/api/storageAdapter';
 
-export const base44 = { entities, auth };
+// InvokeLLM (AI checklist generation, image-to-card, status summaries, news
+// feed) isn't wired up yet — deliberately deferred, not part of this pass.
+export const base44 = { entities, auth, integrations: { Core: { UploadFile } } };
