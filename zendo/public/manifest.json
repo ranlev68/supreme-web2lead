@@ -1,0 +1,25 @@
+{
+  "name": "ZenDO",
+  "short_name": "ZenDO",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#8B0000",
+  "theme_color": "#8B0000",
+  "icons": [
+    {
+      "src": "https://media.base44.com/images/public/699d9eac0c0a1cbc920949de/8141bec9b_ChatGPTImageMay27202601_37_43PM.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://media.base44.com/images/public/699d9eac0c0a1cbc920949de/8141bec9b_ChatGPTImageMay27202601_37_43PM.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "https://media.base44.com/images/public/699d9eac0c0a1cbc920949de/8141bec9b_ChatGPTImageMay27202601_37_43PM.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
