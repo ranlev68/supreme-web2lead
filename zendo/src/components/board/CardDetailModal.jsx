@@ -161,14 +161,20 @@ export default function CardDetailModal({
     const file = e.target.files?.[0];
     if (!file) return;
     setUploadingFile(true);
-    const { file_url } = await base44.integrations.Core.UploadFile({ file });
-    const newAttachment = { id: crypto.randomUUID(), name: file.name, url: file_url, type: file.type, uploaded_at: new Date().toISOString() };
-    const next = [...attachments, newAttachment];
-    setAttachments(next);
-    await base44.entities.Card.update(card.id, { attachments: next });
-    onUpdate({ ...card, attachments: next });
-    setUploadingFile(false);
-    e.target.value = "";
+    try {
+      const { file_url } = await base44.integrations.Core.UploadFile({ file });
+      const newAttachment = { id: crypto.randomUUID(), name: file.name, url: file_url, type: file.type, uploaded_at: new Date().toISOString() };
+      const next = [...attachments, newAttachment];
+      setAttachments(next);
+      await base44.entities.Card.update(card.id, { attachments: next });
+      onUpdate({ ...card, attachments: next });
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't upload attachment: " + err.message);
+    } finally {
+      setUploadingFile(false);
+      e.target.value = "";
+    }
   };
 
   const deleteAttachment = async (id) => {

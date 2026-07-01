@@ -85,10 +85,16 @@ export default function Profile() {
 
   const handleSave = async () => {
     setSaving(true);
-    await base44.auth.updateMe({ job_title: form.job_title, department: form.department, bio: form.bio });
-    setCachedUser({ ...user, job_title: form.job_title, department: form.department, bio: form.bio });
-    setSaving(false);
-    navigate(-1);
+    try {
+      await base44.auth.updateMe({ job_title: form.job_title, department: form.department, bio: form.bio });
+      setCachedUser({ ...user, job_title: form.job_title, department: form.department, bio: form.bio });
+      navigate(-1);
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't save profile: " + err.message);
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (loading) {

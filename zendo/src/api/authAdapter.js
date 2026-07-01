@@ -7,7 +7,11 @@ async function loadProfile(authUser) {
     .eq('id', authUser.id)
     .maybeSingle();
 
+  // Spread the whole row first so any column (theme, palette, holiday
+  // prefs, anything added later) passes through automatically instead of
+  // silently getting dropped by an incomplete hand-picked field list.
   return {
+    ...profile,
     id: authUser.id,
     email: authUser.email,
     full_name: profile?.full_name ?? authUser.user_metadata?.full_name ?? '',

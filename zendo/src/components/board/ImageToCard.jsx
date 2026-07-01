@@ -16,31 +16,37 @@ export default function ImageToCard({ list, boardId, cards, onRefresh }) {
   const processFile = async (file) => {
     if (!file) return;
     setLoading(true);
-    const { file_url } = await base44.integrations.Core.UploadFile({ file });
+    try {
+      const { file_url } = await base44.integrations.Core.UploadFile({ file });
 
-    const result = await base44.integrations.Core.InvokeLLM({
-      prompt: `Look at this image carefully. Extract all distinct task or card titles from it.
+      const result = await base44.integrations.Core.InvokeLLM({
+        prompt: `Look at this image carefully. Extract all distinct task or card titles from it.
 If the image contains a list of items, tasks, or rows — return each one as a separate card title.
 If it contains only a single item or text, return just one card.
 Return clean, concise titles (not full sentences unless needed).`,
-      file_urls: [file_url],
-      response_json_schema: {
-        type: "object",
-        properties: {
-          cards: {
-            type: "array",
-            items: { type: "string" },
+        file_urls: [file_url],
+        response_json_schema: {
+          type: "object",
+          properties: {
+            cards: {
+              type: "array",
+              items: { type: "string" },
+            },
           },
         },
-      },
-    });
+      });
 
-    const titles = (result?.cards || []).map((t) => t.trim()).filter(Boolean);
-    if (titles.length > 0) {
-      setPendingCards(titles);
-      setChecked(titles.map(() => true));
+      const titles = (result?.cards || []).map((t) => t.trim()).filter(Boolean);
+      if (titles.length > 0) {
+        setPendingCards(titles);
+        setChecked(titles.map(() => true));
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't process image: " + err.message);
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
 
   const handleFileChange = async (e) => {

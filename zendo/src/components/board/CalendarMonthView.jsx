@@ -41,11 +41,17 @@ export default function CalendarMonthView({ cards, lists, onCardClick, onCardCre
   const handleCreate = async () => {
     if (!newTitle.trim() || !selectedListId) return;
     setSaving(true);
-    const maxPos = cards.filter(c => c.list_id === selectedListId).reduce((m, c) => Math.max(m, c.position || 0), 0);
-    await base44.entities.Card.create({ title: newTitle.trim(), list_id: selectedListId, board_id: boardId, due_date: creatingOnDay, position: maxPos + 1 });
-    setSaving(false);
-    cancelCreate();
-    onCardCreated?.();
+    try {
+      const maxPos = cards.filter(c => c.list_id === selectedListId).reduce((m, c) => Math.max(m, c.position || 0), 0);
+      await base44.entities.Card.create({ title: newTitle.trim(), list_id: selectedListId, board_id: boardId, due_date: creatingOnDay, position: maxPos + 1 });
+      cancelCreate();
+      onCardCreated?.();
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't create card: " + err.message);
+    } finally {
+      setSaving(false);
+    }
   };
 
   const onDragStart = () => { isDragging.current = true; };

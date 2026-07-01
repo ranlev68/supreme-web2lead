@@ -34,11 +34,17 @@ export default function CalendarDayView({ cards, lists, onCardClick, onCardCreat
   const handleCreate = async () => {
     if (!newTitle.trim() || !selectedListId) return;
     setSaving(true);
-    const maxPos = cards.filter(c => c.list_id === selectedListId).reduce((m, c) => Math.max(m, c.position || 0), 0);
-    await base44.entities.Card.create({ title: newTitle.trim(), list_id: selectedListId, board_id: boardId, due_date: creating.date, position: maxPos + 1 });
-    setSaving(false);
-    cancelCreate();
-    onCardCreated?.();
+    try {
+      const maxPos = cards.filter(c => c.list_id === selectedListId).reduce((m, c) => Math.max(m, c.position || 0), 0);
+      await base44.entities.Card.create({ title: newTitle.trim(), list_id: selectedListId, board_id: boardId, due_date: creating.date, position: maxPos + 1 });
+      cancelCreate();
+      onCardCreated?.();
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't create card: " + err.message);
+    } finally {
+      setSaving(false);
+    }
   };
 
   const onDragEnd = (result) => {

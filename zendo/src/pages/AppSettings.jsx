@@ -111,23 +111,29 @@ export default function AppSettings() {
 
   const handleSave = async () => {
     setSaving(true);
-    await base44.auth.updateMe({
-      default_workspace_id: preferences.default_workspace_id,
-      preferred_board_view: preferences.preferred_board_view,
-      enable_time_tracking: preferences.enable_time_tracking,
-      board_tint_background: preferences.board_tint_background,
-      enable_start_date: preferences.enable_start_date,
-      show_holidays: preferences.show_holidays,
-      holiday_countries: preferences.holiday_countries,
-      mobile_font_size: mobileFontSize,
-      theme: theme,
-      font_family: fontFamily,
-      palette: palette,
-    });
-    const cached = getCached(CACHE_KEY);
-    if (cached) setCache(CACHE_KEY, { ...cached, ...preferences, mobile_font_size: mobileFontSize, theme });
-    setSaving(false);
-    navigate(-1);
+    try {
+      await base44.auth.updateMe({
+        default_workspace_id: preferences.default_workspace_id,
+        preferred_board_view: preferences.preferred_board_view,
+        enable_time_tracking: preferences.enable_time_tracking,
+        board_tint_background: preferences.board_tint_background,
+        enable_start_date: preferences.enable_start_date,
+        show_holidays: preferences.show_holidays,
+        holiday_countries: preferences.holiday_countries,
+        mobile_font_size: mobileFontSize,
+        theme: theme,
+        font_family: fontFamily,
+        palette: palette,
+      });
+      const cached = getCached(CACHE_KEY);
+      if (cached) setCache(CACHE_KEY, { ...cached, ...preferences, mobile_font_size: mobileFontSize, theme });
+      navigate(-1);
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't save settings: " + err.message);
+    } finally {
+      setSaving(false);
+    }
   };
 
   if (loading) {

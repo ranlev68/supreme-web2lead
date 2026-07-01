@@ -48,8 +48,14 @@ export default function DashboardMyWork({ cards, boardMap, listMap, onCardClick,
   const handleToggle = async (e, card) => {
     e.stopPropagation();
     setToggling(prev => ({ ...prev, [card.id]: true }));
-    await base44.entities.Card.update(card.id, { completed: !card.completed });
-    setToggling(prev => ({ ...prev, [card.id]: false }));
+    try {
+      await base44.entities.Card.update(card.id, { completed: !card.completed });
+    } catch (err) {
+      console.error(err);
+      alert("Couldn't update card: " + err.message);
+    } finally {
+      setToggling(prev => ({ ...prev, [card.id]: false }));
+    }
   };
 
   return (
